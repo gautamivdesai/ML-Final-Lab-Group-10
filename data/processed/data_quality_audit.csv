@@ -1,0 +1,11 @@
+Check,Result
+Dataset Shape,"(20640, 9)"
+Missing Values,0
+Duplicate Rows,0
+Invalid MedInc,0
+Invalid HouseAge,0
+Invalid Population,0
+Invalid AveOccup,0
+Invalid Latitude,0
+Invalid Longitude,0
+Potential Outliers,5594
