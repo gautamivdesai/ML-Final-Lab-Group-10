@@ -1,6 +1,26 @@
 # ML-Final-Lab-Group-10
 Apex Realty AI - California Housing Price Prediction
 
+
+## Project Overview
+
+### Business Problem
+
+Apex Realty AI aims to use machine learning to predict residential housing market prices in California.
+
+Accurate house price predictions can help real estate businesses understand property values, identify pricing deviations, and support better data-driven decisions.
+
+### Project Objective
+
+The objective of this project is to build a machine learning solution that predicts the median house value using demographic, housing, and geographic features from the California Housing dataset.
+
+### Key Evaluation Metrics
+
+- RMSE (Root Mean Squared Error)
+- MAE (Mean Absolute Error)
+- R² (R-squared)
+- Residual Analysis
+
 ## Dataset
 
 ### California Housing Dataset
