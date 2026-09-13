@@ -14,6 +14,15 @@ Accurate house price predictions can help real estate businesses understand prop
 
 The objective of this project is to build a machine learning solution that predicts the median house value using demographic, housing, and geographic features from the California Housing dataset.
 
+### Team Members & Contributions
+
+- **Member 1 – Data Engineer:** Data acquisition, cleaning, preprocessing, pipeline development
+- **Member 2 – Data Analyst:** Exploratory Data Analysis (EDA), distributions, correlations, insights
+- **Member 3 – Data Scientist:** Model building, evaluation, residual analysis
+- **Member 4 – ML Engineer:** End-to-end inference pipeline and deployment
+- **Member 5 – Analytics Engineer:** Model interpretation and operational decision thresholds
+- **Member 6 – BI Developer:** Dashboard creation and business intelligence visualizations
+
 ### Key Evaluation Metrics
 
 - RMSE (Root Mean Squared Error)
