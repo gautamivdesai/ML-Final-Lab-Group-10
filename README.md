@@ -1,10 +1,7 @@
 # ML-Final-Lab-Group-10
 Apex Realty AI - California Housing Price Prediction
 
-<<<<<<< HEAD
 
-=======
->>>>>>> c920c064b80c07d1d18a51d951e794db0a893da5
 ## Project Overview
 
 ### Business Problem
