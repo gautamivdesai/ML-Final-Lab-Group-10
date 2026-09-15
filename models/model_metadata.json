@@ -1,0 +1,27 @@
+{
+  "model_name": "LightGBM",
+  "best_params": {
+    "subsample": 0.9,
+    "num_leaves": 127,
+    "n_estimators": 500,
+    "max_depth": 20,
+    "learning_rate": 0.05,
+    "colsample_bytree": 0.8
+  },
+  "test_metrics": {
+    "RMSE": 0.43151351141658784,
+    "MAE": 0.2799129649503516,
+    "R2": 0.8579039722506825
+  },
+  "expected_input_columns": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "input_format": "RAW (unscaled) feature values - the bundled pipeline scales internally"
+}
