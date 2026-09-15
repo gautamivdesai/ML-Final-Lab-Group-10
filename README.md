@@ -71,3 +71,10 @@ Scikit-learn `fetch_california_housing()`
 Data Cleaning & Preprocessing  
 ↓  
 Train/Test Processed Data
+
+
+
+
+
+
+
