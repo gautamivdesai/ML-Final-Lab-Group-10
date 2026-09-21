@@ -91,3 +91,67 @@ Train/Test Processed Data
 =======
 Train/Test Processed Data
 >>>>>>> 9d59286b7a340822466bad9478d7f3499f354e50
+
+
+
+
+## Member 4 – ML Engineer: Inference Pipeline Summary
+
+### Objective
+Develop a reproducible inference pipeline for the California Housing Price Prediction model.
+
+### Model Loading
+- Loaded the trained model from `models/best_model.pkl`.
+- The saved pipeline contains the preprocessing and trained model.
+- No separate manual scaling is required during inference.
+
+### Input Features
+The prediction pipeline accepts the following 8 features:
+
+1. MedInc
+2. HouseAge
+3. AveRooms
+4. AveBedrms
+5. Population
+6. AveOccup
+7. Latitude
+8. Longitude
+
+### Inference Pipeline
+The pipeline performs:
+
+Input Data → Input Validation → Model Prediction → Latency Measurement → Prediction Logging
+
+### Validation
+The pipeline checks:
+- Required features are present.
+- Missing values are detected.
+- Input features are numeric.
+
+### Reproducibility
+The same input produced the same prediction:
+
+- Prediction 1: 2.71583
+- Prediction 2: 2.71583
+
+### Inference Latency
+A 10-prediction benchmark was performed:
+
+- Average latency: 19.11 ms
+- Minimum latency: 2.85 ms
+- Maximum latency: 62.92 ms
+
+### Environment
+- Python: 3.10.9
+- NumPy: 1.26.4
+- Pandas: 2.3.3
+- Scikit-learn: 1.7.2
+- Joblib: 1.6.0
+
+### Logging
+Prediction inputs, prediction output, timestamp, and inference latency are recorded in `prediction_log.csv`.
+
+### Final Test
+The complete end-to-end inference test successfully completed:
+
+Input → Validation → Prediction → Latency Measurement → Logging
