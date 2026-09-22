@@ -44,3 +44,15 @@ print("\nOverall Error KPIs:")
 print(f"MAE: {mae:.4f}")
 print(f"RMSE: {rmse:.4f}")
 print(f"Mean residual: {mean_residual:.4f}")
+
+# Analyze error distribution
+min_residual = df["residual"].min()
+max_residual = df["residual"].max()
+median_absolute_error = df["absolute_error"].median()
+residual_std = df["residual"].std()
+
+print("\nError Distribution KPIs:")
+print(f"Minimum residual: {min_residual:.4f}")
+print(f"Maximum residual: {max_residual:.4f}")
+print(f"Median absolute error: {median_absolute_error:.4f}")
+print(f"Residual standard deviation: {residual_std:.4f}")
