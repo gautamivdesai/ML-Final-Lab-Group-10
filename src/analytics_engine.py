@@ -12,3 +12,9 @@ print(df.columns.tolist())
 
 print("\nFirst 5 rows:")
 print(df.head())
+
+# Calculate absolute prediction error
+df["absolute_error"] = np.abs(df["residual"])
+
+print("\nAbsolute error calculated successfully.")
+print(df[["y_true", "y_pred", "residual", "absolute_error"]].head())
