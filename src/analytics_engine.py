@@ -65,3 +65,13 @@ residual_r2 = 1 - (ss_res / ss_tot)
 
 print("\nResidual R-squared:")
 print(f"Residual R²: {residual_r2:.4f}")
+
+# Identify the largest prediction errors
+top_errors = df.nlargest(10, "absolute_error")
+
+print("\nTop 10 Largest Prediction Errors:")
+print(top_errors[
+    ["MedInc", "HouseAge", "AveRooms", "Population",
+     "Latitude", "Longitude", "y_true", "y_pred",
+     "residual", "absolute_error"]
+].to_string(index=False))
