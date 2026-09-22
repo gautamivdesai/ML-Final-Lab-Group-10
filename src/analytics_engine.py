@@ -106,3 +106,19 @@ geo_band_analysis = (
 
 print("\nGeographic Error Analysis by Latitude Band:")
 print(geo_band_analysis.to_string(index=False))
+
+# Calculate prediction direction by latitude band
+geo_direction = (
+    df.groupby("latitude_band", observed=True)
+    .agg(
+        over_prediction_rate=("over_predicted", "mean"),
+        under_prediction_rate=("under_predicted", "mean")
+    )
+    .reset_index()
+)
+
+geo_direction["over_prediction_rate"] *= 100
+geo_direction["under_prediction_rate"] *= 100
+
+print("\nPrediction Direction by Latitude Band:")
+print(geo_direction.to_string(index=False))
