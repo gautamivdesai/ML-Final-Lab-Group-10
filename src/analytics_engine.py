@@ -18,3 +18,11 @@ df["absolute_error"] = np.abs(df["residual"])
 
 print("\nAbsolute error calculated successfully.")
 print(df[["y_true", "y_pred", "residual", "absolute_error"]].head())
+
+# Identify over-predictions and under-predictions
+df["over_predicted"] = df["residual"] < 0
+df["under_predicted"] = df["residual"] > 0
+
+print("\nPrediction direction:")
+print(df[["y_true", "y_pred", "residual",
+          "over_predicted", "under_predicted"]].head())
