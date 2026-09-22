@@ -122,3 +122,48 @@ geo_direction["under_prediction_rate"] *= 100
 
 print("\nPrediction Direction by Latitude Band:")
 print(geo_direction.to_string(index=False))
+
+# Final Analytics KPI Summary
+kpi_summary = {
+    "MAE": mae,
+    "RMSE": rmse,
+    "Residual_R2": residual_r2,
+    "Mean_Residual": mean_residual,
+    "Median_Absolute_Error": median_absolute_error,
+    "Residual_Std": residual_std,
+    "Over_Prediction_Rate": over_prediction_rate,
+    "Under_Prediction_Rate": under_prediction_rate
+}
+
+print("\nFinal Analytics KPI Summary:")
+for metric, value in kpi_summary.items():
+    print(f"{metric}: {value:.4f}")
+
+# Export KPI summary
+kpi_df = pd.DataFrame(
+    kpi_summary.items(),
+    columns=["KPI", "Value"]
+)
+
+kpi_df.to_csv(
+    "data/processed/analytics_kpis.csv",
+    index=False
+)
+
+print("\nKPI summary exported successfully.")
+
+# Export top 10 prediction errors
+top_errors.to_csv(
+    "data/processed/top_prediction_errors.csv",
+    index=False
+)
+
+print("Top prediction errors exported successfully.")
+
+# Export geographic analysis
+geo_band_analysis.to_csv(
+    "data/processed/geographic_analysis.csv",
+    index=False
+)
+
+print("Geographic analysis exported successfully.")
