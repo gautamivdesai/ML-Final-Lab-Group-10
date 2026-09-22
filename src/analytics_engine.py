@@ -56,3 +56,12 @@ print(f"Minimum residual: {min_residual:.4f}")
 print(f"Maximum residual: {max_residual:.4f}")
 print(f"Median absolute error: {median_absolute_error:.4f}")
 print(f"Residual standard deviation: {residual_std:.4f}")
+
+# Calculate Residual R-squared
+ss_res = np.sum(df["residual"] ** 2)
+ss_tot = np.sum((df["y_true"] - df["y_true"].mean()) ** 2)
+
+residual_r2 = 1 - (ss_res / ss_tot)
+
+print("\nResidual R-squared:")
+print(f"Residual R²: {residual_r2:.4f}")
