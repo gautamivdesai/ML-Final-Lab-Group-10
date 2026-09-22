@@ -34,3 +34,13 @@ under_prediction_rate = df["under_predicted"].mean() * 100
 print("\nPrediction Direction KPIs:")
 print(f"Over-prediction rate: {over_prediction_rate:.2f}%")
 print(f"Under-prediction rate: {under_prediction_rate:.2f}%")
+
+# Calculate overall regression error metrics
+mae = df["absolute_error"].mean()
+rmse = np.sqrt((df["residual"] ** 2).mean())
+mean_residual = df["residual"].mean()
+
+print("\nOverall Error KPIs:")
+print(f"MAE: {mae:.4f}")
+print(f"RMSE: {rmse:.4f}")
+print(f"Mean residual: {mean_residual:.4f}")
