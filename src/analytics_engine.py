@@ -26,3 +26,11 @@ df["under_predicted"] = df["residual"] > 0
 print("\nPrediction direction:")
 print(df[["y_true", "y_pred", "residual",
           "over_predicted", "under_predicted"]].head())
+
+# Calculate prediction direction percentages
+over_prediction_rate = df["over_predicted"].mean() * 100
+under_prediction_rate = df["under_predicted"].mean() * 100
+
+print("\nPrediction Direction KPIs:")
+print(f"Over-prediction rate: {over_prediction_rate:.2f}%")
+print(f"Under-prediction rate: {under_prediction_rate:.2f}%")
