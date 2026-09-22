@@ -75,3 +75,34 @@ print(top_errors[
      "Latitude", "Longitude", "y_true", "y_pred",
      "residual", "absolute_error"]
 ].to_string(index=False))
+
+# Analyze residuals by geographic location
+geo_analysis = (
+    df.groupby(["Latitude", "Longitude"])["residual"]
+    .agg(["mean", "count"])
+    .reset_index()
+)
+
+print("\nGeographic Residual Analysis:")
+print(
+    geo_analysis.sort_values("mean").head(10).to_string(index=False)
+)
+
+# Group observations into latitude bands
+df["latitude_band"] = pd.cut(
+    df["Latitude"],
+    bins=5
+)
+
+geo_band_analysis = (
+    df.groupby("latitude_band", observed=True)
+    .agg(
+        mean_residual=("residual", "mean"),
+        mean_absolute_error=("absolute_error", "mean"),
+        observations=("residual", "count")
+    )
+    .reset_index()
+)
+
+print("\nGeographic Error Analysis by Latitude Band:")
+print(geo_band_analysis.to_string(index=False))
