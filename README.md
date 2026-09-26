@@ -151,13 +151,6 @@ Exploratory Data Analysis was performed to understand:
 
 ### Key EDA Insights
 
-[ADD SANIA'S FINAL 3 KEY INSIGHTS HERE]
-
-1. [Insight 1]
-2. [Insight 2]
-3. [Insight 3]
-
----
 
 # 7. Machine Learning
 
