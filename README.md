@@ -174,14 +174,16 @@ Multiple regression models were evaluated to predict median house values.
 
 ### Models Evaluated
 
-[ADD THE ACTUAL MODELS USED BY MEMBER 3]
-
-Examples:
+The following regression models were evaluated:
 
 - Linear Regression
-- [Model 2]
-- [Model 3]
-- [Final Model]
+- Ridge Regression
+- Decision Tree
+- Random Forest
+- LightGBM
+- XGBoost
+
+A Dummy Regressor using the mean was also used as a baseline for comparison.
 
 ### Model Evaluation
 
@@ -196,19 +198,15 @@ The models were evaluated using:
 ### Final Model
 
 Final selected model:
-
-`[ADD ACTUAL FINAL MODEL NAME]`
+`LightGBM`
 
 ### Final Model Performance
 
 | Metric | Result |
 |---|---:|
-| RMSE | [ADD VALUE] |
-| MAE | [ADD VALUE] |
-| R² | [ADD VALUE] |
-
-> The values above should be replaced with the actual results from the final model. Do not use example values.
-
+| RMSE | 0.4315 |
+| MAE | 0.2799 |
+| R² | 0.8579 |
 ---
 
 # 8. Model Inference Pipeline
