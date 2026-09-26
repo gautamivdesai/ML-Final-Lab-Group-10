@@ -149,8 +149,24 @@ Exploratory Data Analysis was performed to understand:
 - Relationships between features and house prices
 - Geographic patterns
 
-### Key EDA Insights
+## Key EDA Insights
 
+### 1. Income Dominates, Geography Matters
+- **MedInc** is the strongest predictor of house value (**r = 0.6881**).
+- **Latitude** shows a weaker but meaningful relationship (**r = -0.1442**).
+- This suggests that location, particularly North-South geography, has an additional effect on prices.
+- **Modeling implication:** Consider a `MedInc × Latitude` interaction feature to capture location-based price premiums.
+
+### 2. Skewed Features Require Transformation
+- Target variable skewness: **0.9777 → 0.2759** after log transformation (**72% improvement**).
+- `AveOccup` has extreme skewness (**97.63**), while `Population` is highly skewed (**4.94**).
+- **Modeling implication:** Apply log transformations to the target, `AveOccup`, and `Population` to reduce skewness and outlier influence.
+
+### 3. Outliers Represent Real Market Segments
+- **1,071 properties (5.19%)** were identified as statistical outliers.
+- These properties have higher average income (**$76,183**) and house values (**$499,267**) and are concentrated in coastal regions.
+- They appear to represent **premium properties rather than data errors**.
+- **Modeling implication:** Retain outliers and use transformations or robust regression techniques to manage their influence.
 
 # 7. Machine Learning
 
