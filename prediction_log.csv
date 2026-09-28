@@ -1,0 +1,3 @@
+timestamp,MedInc,HouseAge,AveRooms,AveBedrms,Population,AveOccup,Latitude,Longitude,predicted_price,latency_ms
+2026-09-21T10:24:02,5.0,25.0,5.5,1.1,1000.0,3.0,34.2,-118.3,2.7158302669697187,5.176300182938576
+2026-09-21T10:29:20,5.0,25.0,5.5,1.1,1000.0,3.0,34.2,-118.3,2.7158302669697187,5.934000015258789
