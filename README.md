@@ -257,8 +257,6 @@ The predictions can support real estate teams in:
 
 # 10. Power BI Dashboard
 
-An interactive dashboard was developed to present the machine learning results in a business-friendly format.
-
 ### Dashboard Components
 
 - KPI cards
@@ -268,6 +266,16 @@ An interactive dashboard was developed to present the machine learning results i
 - Feature-based analysis
 - Interactive filters/slicers
 - Key Insights
+
+Developed an interactive Power BI dashboard for the California Housing price prediction project. 
+The dashboard presents key housing and model-related insights through KPI cards, interactive filters, visual analysis, and ML prediction results. 
+It is designed to provide a clear, executive-friendly view of housing patterns, predicted prices, and model performance, supporting data-driven interpretation of the project findings.
+
+The dashboard consists of:
+- Executive Summary
+- Model Performance
+- Geographic Analysis
+- House Price Simulator
 
 The Power BI dashboard is available in:
 
