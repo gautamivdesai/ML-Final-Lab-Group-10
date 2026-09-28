@@ -149,15 +149,24 @@ Exploratory Data Analysis was performed to understand:
 - Relationships between features and house prices
 - Geographic patterns
 
-### Key EDA Insights
+## Key EDA Insights
 
-[ADD SANIA'S FINAL 3 KEY INSIGHTS HERE]
+### 1. Income Dominates, Geography Matters
+- **MedInc** is the strongest predictor of house value (**r = 0.6881**).
+- **Latitude** shows a weaker but meaningful relationship (**r = -0.1442**).
+- This suggests that location, particularly North-South geography, has an additional effect on prices.
+- **Modeling implication:** Consider a `MedInc × Latitude` interaction feature to capture location-based price premiums.
 
-1. [Insight 1]
-2. [Insight 2]
-3. [Insight 3]
+### 2. Skewed Features Require Transformation
+- Target variable skewness: **0.9777 → 0.2759** after log transformation (**72% improvement**).
+- `AveOccup` has extreme skewness (**97.63**), while `Population` is highly skewed (**4.94**).
+- **Modeling implication:** Apply log transformations to the target, `AveOccup`, and `Population` to reduce skewness and outlier influence.
 
----
+### 3. Outliers Represent Real Market Segments
+- **1,071 properties (5.19%)** were identified as statistical outliers.
+- These properties have higher average income (**$76,183**) and house values (**$499,267**) and are concentrated in coastal regions.
+- They appear to represent **premium properties rather than data errors**.
+- **Modeling implication:** Retain outliers and use transformations or robust regression techniques to manage their influence.
 
 # 7. Machine Learning
 
@@ -165,14 +174,16 @@ Multiple regression models were evaluated to predict median house values.
 
 ### Models Evaluated
 
-[ADD THE ACTUAL MODELS USED BY MEMBER 3]
-
-Examples:
+The following regression models were evaluated:
 
 - Linear Regression
-- [Model 2]
-- [Model 3]
-- [Final Model]
+- Ridge Regression
+- Decision Tree
+- Random Forest
+- LightGBM
+- XGBoost
+
+A Dummy Regressor using the mean was also used as a baseline for comparison.
 
 ### Model Evaluation
 
@@ -187,19 +198,15 @@ The models were evaluated using:
 ### Final Model
 
 Final selected model:
-
-`[ADD ACTUAL FINAL MODEL NAME]`
+`LightGBM`
 
 ### Final Model Performance
 
 | Metric | Result |
 |---|---:|
-| RMSE | [ADD VALUE] |
-| MAE | [ADD VALUE] |
-| R² | [ADD VALUE] |
-
-> The values above should be replaced with the actual results from the final model. Do not use example values.
-
+| RMSE | 0.4315 |
+| MAE | 0.2799 |
+| R² | 0.8579 |
 ---
 
 # 8. Model Inference Pipeline
@@ -226,31 +233,39 @@ The inference pipeline was tested using sample inputs to verify that predictions
 
 # 9. Analytics & Business Metrics
 
-The analytics stage converts model predictions into business-oriented insights.
+The Analytics and Business Metrics stage evaluates the performance of the trained LightGBM model by analyzing prediction errors, residuals, and geographic patterns.
 
-The analysis includes:
+## Analytics Implementation
 
-- Actual vs predicted values
-- Prediction errors
-- Residual analysis
-- Model performance indicators
-- Business-oriented KPIs
-- Identification of prediction deviations
+The analytics engine is implemented in `src/analytics_engine.py`. It uses the processed test residual dataset, `test_residuals.csv`, containing actual values, predicted values, residuals, and geographic features.
+
+### Key Analytics Tasks
+
+* **Performance Metrics:** Calculate MAE, RMSE, and other model performance indicators.
+* **Prediction Error Analysis:** Identify overpredictions, underpredictions, and large prediction errors.
+* **Residual Analysis:** Analyze the difference between actual and predicted house values.
+* **Geographic Analysis:** Examine prediction errors across latitude-based geographic bands.
+* **Top Prediction Errors:** Identify records with the largest differences between actual and predicted values.
+* **KPI Generation:** Generate summary indicators to support model performance monitoring.
+
+### Analytics Outputs
+
+The analytics engine generates the following CSV files in `data/processed/`:
+
+| Output File                 | Description                                                    |
+| --------------------------- | -------------------------------------------------------------- |
+| `analytics_kpis.csv`        | Summary of model performance and prediction-error indicators   |
+| `top_prediction_errors.csv` | Records with the largest prediction errors                     |
+| `geographic_analysis.csv`   | Geographic analysis of prediction errors across latitude bands |
 
 ### Business Use
 
-The predictions can support real estate teams in:
+The analytics outputs help real estate teams understand model performance, identify prediction deviations, examine geographic error patterns, and support data-driven property analysis.
 
-- Understanding estimated property values
-- Identifying potential pricing deviations
-- Comparing predicted and actual market values
-- Supporting data-driven property analysis
+These outputs are also used to support the Power BI dashboard.
 
----
 
 # 10. Power BI Dashboard
-
-An interactive dashboard was developed to present the machine learning results in a business-friendly format.
 
 ### Dashboard Components
 
@@ -268,9 +283,6 @@ The Power BI dashboard is available in:
 
 ---
 
-# 11. Project Structure
-
-```text
 ML-Final-Lab-Group-10/
 │
 ├── README.md
@@ -283,15 +295,19 @@ ML-Final-Lab-Group-10/
 │   └── processed/
 │       ├── train_processed.csv
 │       ├── test_processed.csv
-│       └── data_quality_audit.csv
+│       ├── test_residuals.csv
+│       ├── data_quality_audit.csv
+│       ├── analytics_kpis.csv
+│       ├── top_prediction_errors.csv
+│       └── geographic_analysis.csv
 │
 ├── notebooks/
-│   └── ML_Project.ipynb
+│   ├── ML_Project.ipynb
+│   └── ML_Project copy.ipynb
 │
 ├── src/
 │   ├── preprocessing.py
-│   ├── model.py
-│   └── predict.py
+│   └── analytics_engine.py
 │
 ├── dashboard/
 │   └── Project_Dashboard.pbix
