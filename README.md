@@ -233,31 +233,39 @@ The inference pipeline was tested using sample inputs to verify that predictions
 
 # 9. Analytics & Business Metrics
 
-The analytics stage converts model predictions into business-oriented insights.
+The Analytics and Business Metrics stage evaluates the performance of the trained LightGBM model by analyzing prediction errors, residuals, and geographic patterns.
 
-The analysis includes:
+## Analytics Implementation
 
-- Actual vs predicted values
-- Prediction errors
-- Residual analysis
-- Model performance indicators
-- Business-oriented KPIs
-- Identification of prediction deviations
+The analytics engine is implemented in `src/analytics_engine.py`. It uses the processed test residual dataset, `test_residuals.csv`, containing actual values, predicted values, residuals, and geographic features.
+
+### Key Analytics Tasks
+
+* **Performance Metrics:** Calculate MAE, RMSE, and other model performance indicators.
+* **Prediction Error Analysis:** Identify overpredictions, underpredictions, and large prediction errors.
+* **Residual Analysis:** Analyze the difference between actual and predicted house values.
+* **Geographic Analysis:** Examine prediction errors across latitude-based geographic bands.
+* **Top Prediction Errors:** Identify records with the largest differences between actual and predicted values.
+* **KPI Generation:** Generate summary indicators to support model performance monitoring.
+
+### Analytics Outputs
+
+The analytics engine generates the following CSV files in `data/processed/`:
+
+| Output File                 | Description                                                    |
+| --------------------------- | -------------------------------------------------------------- |
+| `analytics_kpis.csv`        | Summary of model performance and prediction-error indicators   |
+| `top_prediction_errors.csv` | Records with the largest prediction errors                     |
+| `geographic_analysis.csv`   | Geographic analysis of prediction errors across latitude bands |
 
 ### Business Use
 
-The predictions can support real estate teams in:
+The analytics outputs help real estate teams understand model performance, identify prediction deviations, examine geographic error patterns, and support data-driven property analysis.
 
-- Understanding estimated property values
-- Identifying potential pricing deviations
-- Comparing predicted and actual market values
-- Supporting data-driven property analysis
+These outputs are also used to support the Power BI dashboard.
 
----
 
 # 10. Power BI Dashboard
-
-An interactive dashboard was developed to present the machine learning results in a business-friendly format.
 
 ### Dashboard Components
 
@@ -275,9 +283,6 @@ The Power BI dashboard is available in:
 
 ---
 
-# 11. Project Structure
-
-```text
 ML-Final-Lab-Group-10/
 │
 ├── README.md
@@ -290,15 +295,19 @@ ML-Final-Lab-Group-10/
 │   └── processed/
 │       ├── train_processed.csv
 │       ├── test_processed.csv
-│       └── data_quality_audit.csv
+│       ├── test_residuals.csv
+│       ├── data_quality_audit.csv
+│       ├── analytics_kpis.csv
+│       ├── top_prediction_errors.csv
+│       └── geographic_analysis.csv
 │
 ├── notebooks/
-│   └── ML_Project.ipynb
+│   ├── ML_Project.ipynb
+│   └── ML_Project copy.ipynb
 │
 ├── src/
 │   ├── preprocessing.py
-│   ├── model.py
-│   └── predict.py
+│   └── analytics_engine.py
 │
 ├── dashboard/
 │   └── Project_Dashboard.pbix
