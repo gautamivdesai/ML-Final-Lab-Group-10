@@ -276,6 +276,17 @@ These outputs are also used to support the Power BI dashboard.
 - Feature-based analysis
 - Interactive filters/slicers
 - Key Insights
+### Dashboard & Visualization
+
+- Developed an interactive Power BI dashboard for the California Housing price prediction project.
+- The dashboard presents key housing and model-related insights through KPI cards, interactive filters, visual analysis, and ML prediction results.
+- It is designed to provide a clear, executive-friendly view of housing patterns, predicted prices, and model performance, supporting data-driven interpretation of the project findings.
+- The Dashboard includes
+      *Executive Summary
+      *Model Performance
+      *Geographic Analysis
+      *House Price Simulator 
+
 
 The Power BI dashboard is available in:
 
