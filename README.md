@@ -1,40 +1,31 @@
 # Apex Realty AI – California Housing Price Prediction
 
-**ML Final Lab — Group 10**
+## Executive Summary
 
-An end-to-end machine learning solution for predicting median residential house values in California and analyzing model performance, prediction errors, and geographic patterns.
-
----
-
-## 1. Executive Summary
+Apex Realty AI is a machine learning project designed to predict residential property prices using the California Housing dataset. The project follows an end-to-end data science workflow covering data acquisition, data quality checks, exploratory data analysis, preprocessing, model comparison, hyperparameter tuning, final model evaluation, residual analysis, and business-oriented analytics.
 
 | Item | Details |
 |---|---|
-| **Team** | ML Final Lab — Group 10 |
 | **Client** | Apex Realty AI |
-| **Industry** | Real Estate Analytics |
-| **Problem** | Predict median residential house values in California |
+| **Industry** | Real Estate / Property Analytics |
+| **Problem** | Predict median residential property values |
 | **Dataset** | California Housing Dataset |
-| **Primary Target Variable** | `MedHouseVal` |
-| **Primary Target Metric** | RMSE |
+| **Records** | 20,640 |
+| **Input Features** | 8 |
+| **Target Variable** | `MedHouseVal` |
+| **Primary Metric** | RMSE |
 | **Final Model** | LightGBM |
-| **Final RMSE** | 0.4315 |
-| **Final MAE** | 0.2799 |
-| **Final R²** | 0.8579 |
-
-### Final Model Performance
-
-The final LightGBM model achieved the following performance on the held-out test set:
-
-- **RMSE:** 0.4315
-- **MAE:** 0.2799
-- **R²:** 0.8579
+| **Test RMSE** | 0.4315 |
+| **Test MAE** | 0.2799 |
+| **Test R²** | 0.8579 |
 
 ---
 
-# 2. Team Members
+## 1. Team Name & Member Roster
 
-| Roll No. | Name | Assigned Role |
+### Team 10 – Apex Realty AI
+
+| Roll No. | Member | Assigned Role |
 |---|---|---|
 | 241BCADA08 | Gautami V Desai | Data Engineer |
 | 241BCADA09 | Sania Jeswin | Data Analyst |
@@ -45,81 +36,96 @@ The final LightGBM model achieved the following performance on the held-out test
 
 ---
 
-# 3. Client Persona & Problem Statement
+## 2. Client Persona & Problem Statement
 
-## Client Persona
+### Client Persona
 
-**Client:** Apex Realty AI  
-**Industry:** Real Estate Analytics  
-**Primary Users:** Real estate analysts, pricing teams, property consultants, and business decision-makers.
+**Apex Realty AI** represents a real-estate analytics consultancy that wants to use historical housing data to support property valuation and market analysis.
 
-## Problem Statement
+The client needs a predictive system that can estimate residential property values from demographic, housing, and geographic characteristics.
 
-Apex Realty AI needs a data-driven method to estimate residential property values across California.
+### Problem Statement
 
-Manual or purely descriptive approaches may not consistently capture the combined effects of household income, housing characteristics, population, and geographic location.
+Real-estate pricing depends on multiple factors such as:
 
-The objective of this project is to develop an end-to-end machine learning solution that predicts median house values and provides analytics to help the client understand prediction accuracy, error patterns, and geographic variation.
+- Median income
+- House age
+- Average number of rooms
+- Average number of bedrooms
+- Population
+- Average occupancy
+- Latitude
+- Longitude
 
-## Project Objective
-
-The project aims to:
-
-1. Acquire and validate the California Housing dataset.
-2. Perform data cleaning and preprocessing.
-3. Conduct exploratory data analysis.
-4. Identify important relationships and patterns in the data.
-5. Develop and compare multiple regression models.
-6. Evaluate models using RMSE, MAE, and R².
-7. Select a final model for prediction.
-8. Analyze prediction errors and residuals.
-9. Provide geographic error analysis.
-10. Present the results through a Power BI dashboard.
-11. Provide a client-facing report and presentation.
+The objective is to build a regression model that learns relationships between these variables and the target variable, `MedHouseVal`, to generate reliable property-value predictions.
 
 ---
 
-# 4. Primary Target Metric & Baseline Performance
+## 3. Project Objective
 
-## Target Variable
+The main objective is to develop an end-to-end machine learning pipeline that predicts median house values using the California Housing dataset.
 
-The target variable is:
+### Target Variable
 
-`MedHouseVal` — Median House Value
+`MedHouseVal` – Median House Value.
 
-## Primary Target Metric
+The target is measured in units of **$100,000** in the original California Housing dataset.
 
-**RMSE — Root Mean Squared Error**
+### Primary Evaluation Metrics
 
-RMSE is used as the primary evaluation metric because it penalizes larger prediction errors more strongly and is appropriate for evaluating continuous house-value predictions.
+The project evaluates models using:
 
-## Baseline vs Final Model
+- **RMSE – Root Mean Squared Error**
+- **MAE – Mean Absolute Error**
+- **R² – Coefficient of Determination**
+- **Residual Analysis**
 
-| Model | RMSE | MAE | R² |
+RMSE is used as the primary metric because it gives greater weight to larger prediction errors.
+
+---
+
+## 4. Primary Target Metric & Baseline Performance
+
+A **Dummy Regressor using the mean strategy** was used as the baseline model.
+
+The baseline and candidate models were evaluated using **5-fold cross-validation**, with:
+
+- `n_splits = 5`
+- `shuffle = True`
+- `random_state = 42`
+
+### Baseline Performance
+
+| Model | CV RMSE | CV MAE | CV R² |
 |---|---:|---:|---:|
-| Dummy Regressor — Mean Baseline | **[INSERT ACTUAL BASELINE VALUES]** | **[INSERT ACTUAL BASELINE VALUES]** | **[INSERT ACTUAL BASELINE VALUES]** |
-| LightGBM — Final Model | **0.4315** | **0.2799** | **0.8579** |
+| **Baseline – Dummy Regressor (Mean)** | **1.1562** | **0.9139** | **-0.0002** |
 
-> **Before final submission, replace the three baseline placeholders with the exact Dummy Regressor results from the project notebook. Do not estimate or invent these values.**
+The baseline provides a reference point for evaluating whether the machine learning models provide meaningful predictive improvement.
+
+### Final Model Performance
+
+The tuned LightGBM model was evaluated on the held-out test set.
+
+| Metric | Final LightGBM |
+|---|---:|
+| **Test RMSE** | **0.4315** |
+| **Test MAE** | **0.2799** |
+| **Test R²** | **0.8579** |
 
 ---
 
-# 5. Dataset
+## 5. Dataset
 
-## California Housing Dataset
+The project uses the **California Housing dataset** obtained through Scikit-learn's `fetch_california_housing()` function.
 
-The project uses the California Housing dataset obtained through the Scikit-learn `fetch_california_housing()` dataset loader.
+### Dataset Size
 
-The dataset is based on California census data from the 1990 U.S. Census.
+- **20,640 records**
+- **9 columns**
+- **8 input features**
+- **1 target variable**
 
-### Dataset Details
-
-- **Total records:** 20,640
-- **Input features:** 8
-- **Target variable:** `MedHouseVal`
-- **Total columns:** 9
-
-## Features
+### Features
 
 | Feature | Description |
 |---|---|
@@ -127,215 +133,238 @@ The dataset is based on California census data from the 1990 U.S. Census.
 | `HouseAge` | Median house age |
 | `AveRooms` | Average number of rooms |
 | `AveBedrms` | Average number of bedrooms |
-| `Population` | Population |
-| `AveOccup` | Average household occupancy |
+| `Population` | Block population |
+| `AveOccup` | Average house occupancy |
 | `Latitude` | Geographic latitude |
 | `Longitude` | Geographic longitude |
-| `MedHouseVal` | Median house value |
+| `MedHouseVal` | Median house value – target |
 
 ---
 
-# 6. Project Workflow
+## 6. Data Engineering & Data Quality
 
-The project follows an end-to-end machine learning lifecycle:
+The raw dataset was downloaded and stored as:
 
-1. Problem Definition & Operational Framing
-2. Data Acquisition & Source Provenance
-3. Data Ingestion & Sanitization
-4. Exploratory Data Analysis
-5. Anomaly Detection
-6. Feature Preparation
-7. Train/Test Split
-8. Feature Scaling
-9. Baseline Model
-10. Regression Model Comparison
-11. Model Evaluation
-12. Residual Analysis
-13. Prediction Error Analysis
-14. Geographic Analysis
-15. Analytics Engine Integration
-16. Power BI Dashboard
-17. Client Presentation & Recommendations
+```text
+data/raw/california_housing.csv
+```
 
----
+The dataset was checked for:
 
-# 7. Data Engineering & Preprocessing
+- Missing values
+- Duplicate records
+- Invalid numerical values
+- Invalid geographic coordinates
+- Statistical outliers
 
-The dataset was checked for data quality before machine learning.
+### Data Quality Results
 
-## Data Quality Checks
-
-- Dataset shape: **20,640 × 9**
-- Missing values: **0**
-- Duplicate rows: **0**
-- Invalid values: **0**
-- Potential statistical outliers were identified during exploratory analysis.
-
-Statistical outliers were investigated as part of the analysis rather than automatically removing them.
-
-## Preprocessing Steps
-
-The following preprocessing operations were performed:
-
-- Checked missing values
-- Checked duplicate records
-- Checked invalid values
-- Identified potential statistical outliers
-- Separated features and target variable
-- Split data into training and testing sets
-- Applied `StandardScaler`
-- Prevented data leakage by fitting the scaler only on training data
-- Applied the fitted transformation to the test data
-
-## Train/Test Split
-
-- **Training samples:** 16,512
-- **Testing samples:** 4,128
-- **Number of features:** 8
-- **Test size:** 20%
-- **Random state:** 42
-
-The preprocessing pipeline is implemented in:
-
-`src/preprocessing.py`
-
----
-
-# 8. Exploratory Data Analysis
-
-Exploratory Data Analysis was performed to understand:
-
-- Feature distributions
-- Skewness
-- Outliers
-- Correlations
-- Relationships between features and house prices
-- Geographic patterns
-- Potential sources of prediction error
-
-## Key EDA Insights
-
-### 1. Income Dominates, Geography Matters
-
-`MedInc` was the strongest individual feature associated with house value.
-
-- **MedInc correlation:** 0.6881
-- **Latitude correlation:** -0.1442
-- **Longitude correlation:** -0.0460
-
-This indicates that household income has a strong relationship with house value, while geographic location also contributes additional information.
-
-### 2. Several Variables Are Skewed
-
-Several variables showed substantial skewness.
-
-In the EDA analysis:
-
-- Target skewness was reduced from approximately **0.9777 to 0.2759** after log transformation.
-- `AveOccup` showed very high skewness.
-- `Population` also showed strong positive skewness.
-
-These patterns were considered during the modelling and diagnostic process.
-
-### 3. Outliers Require Interpretation
-
-Potential statistical outliers were identified during the EDA process.
-
-Rather than automatically deleting them, the project considered whether these observations could represent legitimate high-value or unusual housing segments.
-
----
-
-# 9. Machine Learning
-
-Multiple regression models were considered for predicting median house values.
-
-## Models Evaluated
-
-The project evaluated:
-
-- Linear Regression
-- Ridge Regression
-- Decision Tree
-- Random Forest
-- LightGBM
-- XGBoost
-
-A **Dummy Regressor using the mean target value** was used as the baseline model.
-
-## Evaluation Metrics
-
-Models were evaluated using:
-
-- RMSE — Root Mean Squared Error
-- MAE — Mean Absolute Error
-- R² — R-squared
-- Cross-validation results
-- Residual analysis
-
----
-
-# 10. Final Model
-
-## Selected Model
-
-**LightGBM**
-
-The final LightGBM model was selected after comparison with the evaluated regression approaches.
-
-## Final Test Performance
-
-| Metric | Result |
+| Check | Result |
 |---|---:|
-| **RMSE** | **0.4315** |
-| **MAE** | **0.2799** |
-| **R²** | **0.8579** |
+| Dataset Shape | 20,640 × 9 |
+| Missing Values | 0 |
+| Duplicate Rows | 0 |
+| Invalid `MedInc` | 0 |
+| Invalid `HouseAge` | 0 |
+| Invalid `Population` | 0 |
+| Invalid `AveOccup` | 0 |
+| Invalid `Latitude` | 0 |
+| Invalid `Longitude` | 0 |
 
-## Model Configuration
+The dataset contained no missing values or duplicate rows.
 
-The final model metadata contains the following configuration:
+### Outlier Analysis
 
-```text
-Model: LightGBM
+The IQR method identified potential statistical outliers.
 
-n_estimators: 500
-learning_rate: 0.05
-num_leaves: 127
-max_depth: 20
-subsample: 0.9
-colsample_bytree: 0.8
+The notebook identified **1,071 properties (5.19%)** as target-value outliers.
+
+These observations were retained because they represent potentially meaningful high-value properties rather than automatically treating them as erroneous records.
+
+---
+
+## 7. Data Preprocessing
+
+The target variable was separated from the eight input features.
+
+A train-test split was performed using:
+
+```python
+test_size = 0.20
+random_state = 42
 ```
 
-The trained model and metadata are stored in:
+This produced:
+
+| Dataset | Records |
+|---|---:|
+| Training Set | 16,512 |
+| Testing Set | 4,128 |
+
+### Feature Scaling
+
+A `StandardScaler` was used inside a Scikit-learn pipeline.
+
+The scaler was:
+
+1. Fit only on the training data.
+2. Used to transform the training data.
+3. Used to transform the test data using the same fitted scaler.
+
+This prevents information from the test set from leaking into the training process.
+
+The final model was packaged together with the scaler so that the prediction pipeline accepts **raw feature values**.
+
+---
+
+## 8. Exploratory Data Analysis
+
+The EDA was performed using the original, non-scaled data so that the distributions and relationships remained interpretable.
+
+### Key EDA Insight 1 – Income Dominates, but Geography Matters
+
+`MedInc` showed the strongest relationship with the target.
+
+| Variable | Correlation with `MedHouseVal` |
+|---|---:|
+| `MedInc` | **0.6881** |
+| `Latitude` | **-0.1442** |
+| `Longitude` | **-0.0460** |
+
+Median income is therefore an important predictor of house value, while geographic variables also provide additional information.
+
+The analysis suggested that an interaction such as:
 
 ```text
-models/
-├── best_model.pkl
-└── model_metadata.json
+MedInc × Latitude
+```
+
+could potentially capture geographic differences in the relationship between income and property prices.
+
+### Key EDA Insight 2 – Strong Skewness
+
+The target variable was right-skewed.
+
+| Variable | Skewness |
+|---|---:|
+| `MedHouseVal` – Raw | **0.9777** |
+| `MedHouseVal` – Log transformed | **0.2759** |
+| `AveOccup` | **97.6325** |
+| `Population` | **4.9355** |
+
+The log transformation reduced target skewness substantially.
+
+The notebook also showed that the raw target and log-transformed target were still statistically non-normal according to the Shapiro-Wilk test.
+
+### Key EDA Insight 3 – Outliers Represent a Real Market Segment
+
+The analysis identified **1,071 target-value outliers**, representing approximately **5.19%** of the dataset.
+
+The notebook's EDA found that these properties had:
+
+- Average value of approximately **$499,267**
+- Average median income of approximately **$76,183**
+- Average latitude of approximately **35.22**
+
+The project therefore retained these observations instead of automatically removing them.
+
+---
+
+## 9. Machine Learning Models
+
+The following models were compared using 5-fold cross-validation:
+
+1. Dummy Regressor
+2. Linear Regression
+3. Ridge Regression
+4. Decision Tree
+5. Random Forest
+6. LightGBM
+7. XGBoost
+
+### Cross-Validation Results
+
+| Algorithm | CV RMSE | CV MAE | CV R² |
+|---|---:|---:|---:|
+| **LightGBM** | **0.4713** | **0.3156** | **0.8338** |
+| XGBoost | 0.4739 | 0.3158 | 0.8319 |
+| Random Forest | 0.5109 | 0.3349 | 0.8047 |
+| Ridge Regression | 0.7205 | 0.5291 | 0.6115 |
+| Linear Regression | 0.7205 | 0.5291 | 0.6115 |
+| Decision Tree | 0.7337 | 0.4727 | 0.5966 |
+| Baseline – Mean | 1.1562 | 0.9139 | -0.0002 |
+
+LightGBM had the lowest cross-validation RMSE among the candidate models and was therefore selected for hyperparameter tuning.
+
+---
+
+## 10. Hyperparameter Tuning
+
+The selected LightGBM model was tuned using `RandomizedSearchCV`.
+
+The tuning process used:
+
+- 5-fold cross-validation
+- 20 random parameter combinations
+- RMSE as the scoring metric
+- `random_state = 42`
+
+### Best Hyperparameters
+
+```text
+subsample = 0.9
+num_leaves = 127
+n_estimators = 500
+max_depth = 20
+learning_rate = 0.05
+colsample_bytree = 0.8
+```
+
+The best cross-validation RMSE after tuning was:
+
+```text
+0.4412
 ```
 
 ---
 
-# 11. Model Inference Pipeline
+## 11. Final Model
 
-The inference workflow connects input housing information to the trained machine learning model.
+The final selected model is:
 
-### Prediction Workflow
+### LightGBM Regressor
+
+The tuned model was fitted using the training data and evaluated on the held-out test set.
+
+### Final Test Results
+
+| Metric | Value |
+|---|---:|
+| RMSE | **0.4315** |
+| MAE | **0.2799** |
+| R² | **0.8579** |
+
+The final model was saved as:
 
 ```text
-Input Housing Features
-        ↓
-Data Validation
-        ↓
-Preprocessing / Scaling
-        ↓
-Trained LightGBM Model
-        ↓
-House Value Prediction
-        ↓
-Business Interpretation
+models/best_model.pkl
 ```
 
-The expected input features are:
+Model metadata is stored in:
+
+```text
+models/model_metadata.json
+```
+
+---
+
+## 12. Prediction Pipeline
+
+The final model is packaged together with the preprocessing scaler.
+
+The saved pipeline accepts raw feature values and performs scaling internally before generating predictions.
+
+### Expected Input Features
 
 ```text
 MedInc
@@ -348,181 +377,70 @@ Latitude
 Longitude
 ```
 
-The bundled model pipeline accepts raw feature values and performs the required preprocessing internally.
+This avoids the need to manually scale input values before prediction.
+
+### Prediction Output
+
+The prediction function returns:
+
+- Predicted house value
+- Prediction latency in milliseconds
 
 ---
 
-# 12. Analytics & Business Metrics
+## 13. Residual & Error Analysis
 
-The analytics engine evaluates model performance by analyzing prediction errors, residuals, and geographic patterns.
-
-The analytics engine is implemented in:
-
-`src/analytics_engine.py`
-
-## Key Analytics Tasks
-
-### Performance Metrics
-
-The system calculates:
-
-- MAE
-- RMSE
-- Residual R²
-- Mean residual
-- Median absolute error
-- Residual standard deviation
-
-### Prediction Error Analysis
-
-The system identifies:
-
-- Over-predictions
-- Under-predictions
-- Absolute prediction errors
-- Largest prediction errors
-
-### Residual Analysis
-
-Residuals are calculated as:
+Residuals were calculated using:
 
 ```text
-Residual = Actual Value - Predicted Value
+Residual = Actual Value − Predicted Value
 ```
 
-The residuals are used to understand where and how the model makes prediction errors.
+The project generated:
 
-### Geographic Analysis
+- Predicted vs Actual plot
+- Residuals vs Predicted plot
+- Residual distribution
+- Geographic residual analysis
+- Latitude-band error analysis
 
-Prediction errors are also analyzed geographically using:
+### Test-Set Analytics
 
-- Latitude
-- Longitude
-- Latitude bands
-- Mean residual
-- Mean absolute error
-- Prediction direction
-
----
-
-# 13. Analytics Outputs
-
-The analytics engine generates the following files:
-
-| File | Purpose |
-|---|---|
-| `analytics_kpis.csv` | Summary of model-performance and prediction-error KPIs |
-| `top_prediction_errors.csv` | Records with the largest prediction errors |
-| `geographic_analysis.csv` | Prediction-error analysis across latitude bands |
-| `test_residuals.csv` | Actual values, predicted values, residuals, and geographic features |
-
-These files are stored in:
-
-```text
-data/processed/
-```
-
----
-
-# 14. Analytics KPI Results
-
-The current analytics output contains:
-
-| KPI | Value |
+| Metric | Value |
 |---|---:|
+| Test Records | 4,128 |
 | MAE | 0.2799 |
 | RMSE | 0.4315 |
-| Residual R² | 0.8579 |
+| R² | 0.8579 |
 | Mean Residual | -0.0021 |
 | Median Absolute Error | 0.1772 |
 | Residual Standard Deviation | 0.4316 |
 | Over-Prediction Rate | 56.44% |
 | Under-Prediction Rate | 43.56% |
 
-These KPIs provide additional information about the behaviour of the model beyond the primary evaluation metrics.
+These analytics provide additional information about the direction and magnitude of prediction errors beyond the main model metrics.
 
 ---
 
-# 15. Power BI Dashboard
+## 14. Business Analytics
 
-An interactive Power BI dashboard was developed to provide an executive-friendly view of the project results.
+The project goes beyond model training by analyzing prediction errors from a business perspective.
 
-The dashboard includes:
+The analytics engine calculates:
 
-- Executive Summary
-- KPI cards
-- Model Performance
-- Actual vs Predicted Analysis
-- Prediction Error Analysis
-- Geographic Analysis
-- Feature-based Analysis
-- Interactive filters and slicers
-- House Price Simulator
-- Key Insights
+- MAE
+- RMSE
+- R²
+- Mean residual
+- Median absolute error
+- Residual standard deviation
+- Over-prediction rate
+- Under-prediction rate
+- Top prediction errors
+- Geographic error patterns
+- Latitude-band performance
 
-The Power BI dashboard is available at:
-
-```text
-dashboard/Project_Dashboard.pbix
-```
-
----
-
-# 16. Reproduction & Setup
-
-## Requirements
-
-The project requires Python and the packages listed in:
-
-```text
-requirements.txt
-```
-
-Python 3.10+ is recommended.
-
-## Step 1 — Clone the Repository
-
-```bash
-git clone https://github.com/gautamivdesai/ML-Final-Lab-Group-10.git
-cd ML-Final-Lab-Group-10
-```
-
-## Step 2 — Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Step 3 — Run Data Preprocessing
-
-```bash
-python src/preprocessing.py
-```
-
-This script:
-
-1. Loads the raw California Housing dataset.
-2. Removes duplicate rows.
-3. Removes rows with missing values.
-4. Separates features and target.
-5. Performs the train/test split.
-6. Fits `StandardScaler` on the training data.
-7. Transforms the test data using the fitted scaler.
-8. Saves the processed datasets.
-
-Processed files are saved to:
-
-```text
-data/processed/
-```
-
-## Step 4 — Run Analytics
-
-```bash
-python src/analytics_engine.py
-```
-
-This generates:
+The generated analytics files are stored in:
 
 ```text
 data/processed/analytics_kpis.csv
@@ -530,9 +448,152 @@ data/processed/top_prediction_errors.csv
 data/processed/geographic_analysis.csv
 ```
 
-## Step 5 — Run the Machine Learning Notebook
+---
 
-Launch Jupyter:
+## 15. Power BI Dashboard
+
+A Power BI dashboard was created to communicate model and business performance visually.
+
+The dashboard file is located at:
+
+```text
+dashboard/Project_Dashboard.pbix
+```
+
+The dashboard is intended to provide an accessible view of:
+
+- Model performance
+- Prediction errors
+- Geographic patterns
+- Key analytics KPIs
+
+---
+
+## 16. Project Workflow
+
+The complete project follows this workflow:
+
+```text
+Data Acquisition
+       ↓
+Data Quality Checks
+       ↓
+Exploratory Data Analysis
+       ↓
+Data Cleaning
+       ↓
+Train-Test Split
+       ↓
+Feature Scaling
+       ↓
+Baseline Model
+       ↓
+Model Comparison
+       ↓
+Hyperparameter Tuning
+       ↓
+Final LightGBM Model
+       ↓
+Test Evaluation
+       ↓
+Residual Analysis
+       ↓
+Business Analytics
+       ↓
+Power BI Dashboard
+```
+
+---
+
+## 17. Repository Structure
+
+```text
+ML-Final-Lab-Group-10/
+│
+├── data/
+│   ├── raw/
+│   │   └── california_housing.csv
+│   │
+│   └── processed/
+│       ├── cleaned_california_housing.csv
+│       ├── train_processed.csv
+│       ├── test_processed.csv
+│       ├── data_quality_audit.csv
+│       ├── cv_comparison_table.csv
+│       ├── test_residuals.csv
+│       ├── analytics_kpis.csv
+│       ├── top_prediction_errors.csv
+│       └── geographic_analysis.csv
+│
+├── dashboard/
+│   └── Project_Dashboard.pbix
+│
+├── models/
+│   ├── best_model.pkl
+│   ├── model_metadata.json
+│   ├── residual_diagnostics.png
+│   └── geographic_residuals.png
+│
+├── notebooks/
+│   ├── ML_Project.ipynb
+│   └── ML_Project copy.ipynb
+│
+├── report/
+│   ├── Group10_Update1.docx
+│   ├── Group10_Update2.docx
+│   ├── Group10_Update3.docx
+│   ├── Group10_Update4.docx
+│   └── Project_Report.pdf
+│
+├── presentation/
+│   └── Client_Pitch.pptx
+│
+├── src/
+│   ├── preprocessing.py
+│   └── analytics_engine.py
+│
+├── prediction_log.csv
+├── requirements.txt
+└── README.md
+```
+
+> `Project_Report.pdf` and `Client_Pitch.pptx` should be added to the repository before the final submission if they are not already present.
+
+---
+
+## 18. Installation & Reproduction
+
+### Step 1 – Clone the Repository
+
+```bash
+git clone https://github.com/gautamivdesai/ML-Final-Lab-Group-10.git
+```
+
+### Step 2 – Enter the Repository
+
+```bash
+cd ML-Final-Lab-Group-10
+```
+
+### Step 3 – Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 4 – Run Preprocessing
+
+```bash
+python src/preprocessing.py
+```
+
+### Step 5 – Run Analytics
+
+```bash
+python src/analytics_engine.py
+```
+
+### Step 6 – Open the Notebook
 
 ```bash
 jupyter notebook
@@ -544,132 +605,110 @@ Then open:
 notebooks/ML_Project.ipynb
 ```
 
-Run the notebook cells to reproduce the project's:
-
-- Exploratory Data Analysis
-- Model development
-- Model comparison
-- Evaluation
-- Prediction workflow
-- Diagnostic analysis
+Run the notebook cells sequentially to reproduce the complete analysis and modelling workflow.
 
 ---
 
-# 17. Project Structure
+## 19. Requirements
+
+The project uses Python and the following major libraries:
+
+- pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- SciPy
+- Scikit-learn
+- LightGBM
+- XGBoost
+- Jupyter
+
+The complete dependency list is provided in:
 
 ```text
-ML-Final-Lab-Group-10/
-│
-├── README.md
-├── requirements.txt
-├── prediction_log.csv
-│
-├── data/
-│   ├── raw/
-│   │   └── california_housing.csv
-│   │
-│   └── processed/
-│       ├── train_processed.csv
-│       ├── test_processed.csv
-│       ├── test_residuals.csv
-│       ├── data_quality_audit.csv
-│       ├── analytics_kpis.csv
-│       ├── top_prediction_errors.csv
-│       └── geographic_analysis.csv
-│
-├── notebooks/
-│   ├── ML_Project.ipynb
-│   ├── ML_Project copy.ipynb
-│   └── report_figures/
-│
-├── src/
-│   ├── preprocessing.py
-│   └── analytics_engine.py
-│
-├── models/
-│   ├── best_model.pkl
-│   ├── model_metadata.json
-│   ├── residual_diagnostics.png
-│   └── geographic_residuals.png
-│
-├── dashboard/
-│   └── Project_Dashboard.pbix
-│
-├── report/
-│   └── Project_Report.pdf
-│
-└── presentation/
-    └── Client_Pitch.pptx
+requirements.txt
 ```
 
 ---
 
-# 18. Project Deliverables
+## 20. Limitations
 
-## Machine Learning Notebook
+The project has several limitations:
 
-[ML Project Notebook](notebooks/ML_Project.ipynb)
-
-## Power BI Dashboard
-
-[Power BI Dashboard](dashboard/Project_Dashboard.pbix)
-
-## Final Project Report
-
-[Final Project Report](report/Project_Report.pdf)
-
-## Client Presentation
-
-[Client Pitch Presentation](presentation/Client_Pitch.pptx)
-
-## Source Code
-
-[Source Code](src/)
-
-## Trained Model
-
-[Model Files](models/)
+1. The dataset represents California housing data and may not directly represent current housing markets in other regions.
+2. The model is trained on historical data and does not incorporate real-time market conditions.
+3. Factors such as interest rates, current market demand, property-specific amenities, renovations, and local economic changes are not included.
+4. Statistical outliers were retained because they may represent legitimate high-value properties.
+5. Predictions should be interpreted as model estimates rather than guaranteed market values.
 
 ---
 
-# 19. Limitations
+## 21. Final Deliverables
 
-The project uses historical California housing data based on 1990 census information. Therefore, the model should be interpreted as a machine learning analysis of the provided dataset rather than a representation of current California housing prices.
+The final repository should contain:
 
-The model's predictions are dependent on the quality and representativeness of the input features available in the dataset.
-
-Prediction errors are not uniform across all observations, and geographic and property-level differences can affect model performance.
-
-The model should therefore be used as an analytical decision-support tool rather than as a replacement for professional property valuation.
-
----
-
-# 20. Final Submission
-
-This repository contains the complete ML Final Lab project, including:
-
-- Data preparation
-- Exploratory data analysis
-- Machine learning models
-- Final LightGBM model
-- Model evaluation
-- Residual and prediction-error analysis
-- Geographic analysis
-- Analytics engine
+- Source code
+- Jupyter notebook
+- Dataset and processed data
+- Trained model
+- Model metadata
+- Analytics outputs
 - Power BI dashboard
 - Final project report
-- Client presentation
+- Final presentation
+- `README.md`
+- `requirements.txt`
 
-### Submission Version
+### Final Files
 
-**`v1.0-final-submission`**
+Once uploaded, the final deliverables should be accessible from:
 
-The final GitHub tag and release identify the repository state submitted for evaluation.
+```text
+report/Project_Report.pdf
+presentation/Client_Pitch.pptx
+```
 
 ---
 
-## Team 10
+## 22. Final Submission
 
-**Apex Realty AI — California Housing Price Prediction**
+The final submission version will be marked using the Git tag:
 
-**ML Final Lab | Group 10**
+```text
+v1.0-final-submission
+```
+
+Before creating the final release:
+
+1. Verify the README.
+2. Verify `requirements.txt`.
+3. Add the final report.
+4. Add the final presentation.
+5. Verify that all files open correctly.
+6. Commit all final changes.
+7. Push the final commit.
+8. Create the GitHub tag/release:
+
+```text
+v1.0-final-submission
+```
+
+No further changes should be pushed after the final submission deadline.
+
+---
+
+## 23. Project Summary
+
+**Apex Realty AI** demonstrates a complete machine learning workflow for residential property-value prediction.
+
+The project begins with data acquisition and quality validation, followed by exploratory data analysis and preprocessing. Multiple regression algorithms are compared using cross-validation, with LightGBM selected for further tuning.
+
+The final tuned LightGBM model achieved:
+
+```text
+RMSE = 0.4315
+MAE  = 0.2799
+R²   = 0.8579
+```
+
+The project also incorporates residual analysis, geographic error analysis, business KPIs, a reusable prediction pipeline, and a Power BI dashboard to provide a broader view of model performance and prediction behaviour.
