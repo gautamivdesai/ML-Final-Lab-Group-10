@@ -2,4 +2,8 @@ pandas
 numpy
 matplotlib
 scikit-learn
+lightgbm
+xgboost
 jupyter
+notebook
+seaborn
